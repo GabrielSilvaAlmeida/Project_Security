@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mulberry</title>
+</head>
+
+  <header th:fragment="header">
+    <nav class="navgation1 navbar navbar-expand-lg  ">
+        <div class=" container-fluid">
+          <a class="navbar-brand" href="#" ><img src="img/logo.png" width="150px" alt=""></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class=" collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class=" navbar-nav me-auto mb-2 mb-lg-0">
+                <li class=" nav-item dropdown me-4">
+                    <a class=" nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Navegar
+                    </a>
+                    <ul class="dropdown-menu me-4" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                  </li>
+              <li class="nav-item me-4">
+                <a class=" nav-link" href="#">Jogos</a>
+              </li>
+              <li class="nav-item dropdown me-4">
+                <a class=" nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Notícias
+                </a>
+                <ul class="dropdown-menu me-4" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Todas as Notícias</a></li>
+                  <li><a class="dropdown-item" href="#">Anime Awards</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Eventos & Experiências</a></li>
+                </ul>
+              </li>
+   
+            </ul>
+            <form class="d-flex me-5">
+              <a href="" class="icon pt-2 me-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="25" fill="white" class="bi bi-search" viewBox="0 0 16 16">
+                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                </svg>
+              </a>
+            
+              <a class="icon pt-2" href="">
+                <svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 15px;" width="25" height="35" fill="white" class="bi bi-bookmark" viewBox="0 0 16 16">
+                  <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"/>
+                </svg>
+              </a>
+            
+              <div class="nav-item dropdown me-3">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <svg class="pt-2 bi bi-person-circle" xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                  </svg>
+                </a>
+                <ul class="itemprofile dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li class="dropdown-item">Seja Bem-vindo!</li>
+                  <li class="dropdown-item"><span th:text="${#authentication.name}">Usuário</span></li>
+                  <li><a class="dropdown-item" href="login.html">Perfil</a></li>
+                  <li><a class="dropdown-item" href="#">Configuração</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" th:href="@{/logout}">Logout</a></li>
+                </ul>
+              </div>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+    </header>
+</body>
+</html>

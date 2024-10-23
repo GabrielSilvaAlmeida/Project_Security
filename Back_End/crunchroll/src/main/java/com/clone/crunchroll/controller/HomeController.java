@@ -7,27 +7,28 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.clone.crunchroll.model.cliente.Cliente;
+import com.clone.crunchroll.model.cliente.ClienteUserDetails;
 
 @Controller
 public class HomeController {
 
-    @GetMapping("/home")
+
+    @GetMapping("/")
     public String home(Model model) {
         // Obter a autenticação atual
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         
         // Verificar se o usuário está autenticado
         if (authentication != null && authentication.isAuthenticated()) {
-            // O principal contém o nome do usuário ou um objeto UserDetails (Cliente)
-            Object principal = authentication.getName();
+            Object principal = authentication.getPrincipal();
 
-            // Verificar se é uma instância do seu Cliente
-            if (principal instanceof Cliente) {
-                Cliente cliente = (Cliente) principal;
+            // Verificar se o principal é uma instância de ClienteUserDetails
+            if (principal instanceof ClienteUserDetails) {
+                ClienteUserDetails clienteUserDetails = (ClienteUserDetails) principal;
+                Cliente cliente = clienteUserDetails.getCliente();
+
+                // Adicionar o nome completo ao modelo
                 model.addAttribute("nomeUsuario", cliente.getName());
-            } else {
-                // Caso seja um username (String), adicione o nome de outra forma
-                model.addAttribute("nomeUsuario", principal.toString());
             }
         }
 

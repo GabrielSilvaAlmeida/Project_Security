@@ -30,10 +30,12 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
             
                 .authorizeHttpRequests(registry -> {
+                    registry.requestMatchers("/videos/**").permitAll();
                     registry.requestMatchers("/home", "/register/**", "/css/**", "/fragments/**", "/static/**","/js/**", "/img/**").permitAll();
                     registry.requestMatchers("/admin/**").hasRole("ADMIN");
                     registry.requestMatchers("/user/**").hasRole("USER");
                     registry.anyRequest().authenticated();
+                    
                 })
                 
                 .formLogin(httpSecurityFormLoginConfigurer -> {
@@ -41,8 +43,15 @@ public class SecurityConfig {
                             .loginPage("/login")
                             .successHandler(new AuthenticationSuccessHandler())
                             .permitAll();
+                            
                 })
+                .logout(logout -> logout
+                .logoutSuccessUrl("/login?logout") // Redireciona após logout
+                .permitAll() // Permitir acesso ao logout
+            )
                 .build();
+        
+
     }
 
     @Bean

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Vídeos</title>
+</head>
+<body>
+    <h1>Lista de Vídeos</h1>
+    <ul>
+        <li th:each="video : ${videos}">
+            <a th:href="@{'/videos/' + ${video}}" th:text="${video}"></a>
+        </li>
+    </ul>
+
+    <video id="player" width="640" height="360" controls>
+        <source id="videoSource" src="" type="video/mp4">
+        Seu navegador não suporta a tag de vídeo.
+    </video>
+
+    <script>
+        const videoLinks = document.querySelectorAll("a");
+        const videoPlayer = document.getElementById("player");
+        const videoSource = document.getElementById("videoSource");
+
+        videoLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                videoSource.src = link.href;
+                videoPlayer.load();
+                videoPlayer.play();
+            });
+        });
+    </script>
+</body>
+</html>
